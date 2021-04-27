@@ -2,7 +2,7 @@
 El proposito de este proyecto es diseñar e implementar una aplicacion Android   
 para la pagina de GetYourTour que permita visualizar los tours con sus detalles.
 
-## Construido
+## Herramientas
 Desarrollado con Kotlin utilizando el IDE Android Studio.
 
 ## Autores
