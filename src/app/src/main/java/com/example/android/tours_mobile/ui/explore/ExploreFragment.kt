@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +17,15 @@ import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
 
+
 class ExploreFragment : Fragment() {
 
     private var adapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     private var layoutManager : RecyclerView.LayoutManager? = null
+    private lateinit var editTextDeparture : EditText
+    private lateinit var editTextArrival : EditText
+    private lateinit var imageButtonDeparture : ImageButton
+    private lateinit var imageButtonArrival : ImageButton
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -74,4 +81,5 @@ class ExploreFragment : Fragment() {
             "{}"
         }
     }
+
 }
