@@ -2,7 +2,7 @@
     android:dither="true"
     android:shape="rectangle">
     <corners android:radius="120dp" />
-    <solid android:color="#2B73E3" />
+    <solid android:color="@color/light_blue" />
     <size
         android:width="170dp"
         android:height="45dp" />
