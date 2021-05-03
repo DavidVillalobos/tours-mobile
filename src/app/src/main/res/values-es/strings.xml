@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GetYourTour</string>
+    <string name="title_explore">Explorar</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="title_reservations">Reservas</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="title_profile">Perfil</string>
+    <string name="data_format">dd/mm/aaaa</string>
+    <string name="label_price">Desde</string>
+    <string name="label_coin">$</string>
+    <string name="label_reviews">Opiniones</string>
+    <string name="label_button_search">Buscar</string>
+    <string name="text_fragment_favorites">Fragment de Favoritos</string>
+    <string name="text_fragment_notifications">Fragment de Notificaciones</string>
+    <string name="text_fragment_profile">Fragment de Perfil</string>
+    <string name="text_fragment_reservations">Fragment de Reservaciones</string>
+</resources>
