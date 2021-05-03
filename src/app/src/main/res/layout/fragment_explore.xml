@@ -8,50 +8,6 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/edit_text_place"
-        android:layout_width="170dp"
-        android:layout_height="40dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="textShortMessage"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756"
-        tools:ignore="LabelFor" />
-
-    <EditText
-        android:id="@+id/edit_text_departure"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/data_format"
-        android:inputType="date"
-        android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@+id/button_Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.728"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
-
-    <ImageButton
-        android:id="@+id/image_button_departure"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ic_calendar"
-        app:layout_constraintBottom_toTopOf="@+id/edit_text_place"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545"
-        tools:ignore="ContentDescription" />
-
-    <EditText
         android:id="@+id/edit_text_arrival"
         android:layout_width="120dp"
         android:layout_height="40dp"
@@ -59,6 +15,8 @@
         android:ems="10"
         android:hint="@string/data_format"
         android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
         android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@+id/edit_text_place"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +31,37 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/ic_calendar"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_place"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:id="@+id/edit_text_departure"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/data_format"
+        android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/button_Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <ImageButton
+        android:id="@+id/image_button_departure"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_calendar"
         app:layout_constraintBottom_toTopOf="@+id/button_Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.921"
@@ -81,9 +70,24 @@
         app:layout_constraintVertical_bias="0.545"
         tools:ignore="ContentDescription" />
 
+    <EditText
+        android:id="@+id/edit_text_place"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textShortMessage"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.756"
+        tools:ignore="LabelFor" />
+
     <Button
         android:id="@+id/button_Search"
-        android:layout_width="170dp"
+        android:layout_width="130dp"
         android:layout_height="40dp"
         android:background="@drawable/ic_pill_background"
         android:drawableLeft="@drawable/ic_search"
@@ -93,10 +97,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintHorizontal_bias="0.829"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756"
+        app:layout_constraintVertical_bias="0.76"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
