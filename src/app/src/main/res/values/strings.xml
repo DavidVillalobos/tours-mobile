@@ -5,7 +5,7 @@
     <string name="title_reservations">Reservations</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
-    <string name="data_format">dd/mm/aaaa</string>
+    <string name="data_format">dd/mm/yyyy</string>
     <string name="label_price">From</string>
     <string name="label_coin">$</string>
     <string name="label_reviews">Reviews</string>
