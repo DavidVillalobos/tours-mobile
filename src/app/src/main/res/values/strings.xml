@@ -5,7 +5,6 @@
     <string name="title_reservations">Reservations</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
-    <string name="data_format">dd/mm/yyyy</string>
     <string name="label_price">From</string>
     <string name="label_coin">$</string>
     <string name="label_reviews">Reviews</string>
@@ -14,4 +13,7 @@
     <string name="text_fragment_notifications">Fragment of Notifications</string>
     <string name="text_fragment_profile">Fragment of Profile</string>
     <string name="text_fragment_reservations">Fragment of Reservations</string>
+    <string name="label_place">Place</string>
+    <string name="label_departure">Departure</string>
+    <string name="label_arrival">Arrival</string>
 </resources>
