@@ -8,12 +8,12 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/edit_text_arrival"
+        android:id="@+id/edit_text_departure"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/data_format"
+        android:hint="@string/label_departure"
         android:inputType="date"
         android:focusable="false"
         android:clickable="true"
@@ -31,21 +31,21 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/ic_calendar"
-        app:layout_constraintBottom_toTopOf="@+id/edit_text_place"
+        app:layout_constraintBottom_toTopOf="@+id/image_button_arrival2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545"
+        app:layout_constraintVertical_bias="0.544"
         tools:ignore="ContentDescription" />
 
     <EditText
-        android:id="@+id/edit_text_departure"
+        android:id="@+id/edit_text_arrival"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/data_format"
+        android:hint="@string/label_arrival"
         android:inputType="date"
         android:focusable="false"
         android:clickable="true"
@@ -72,18 +72,32 @@
 
     <EditText
         android:id="@+id/edit_text_place"
-        android:layout_width="170dp"
+        android:layout_width="120dp"
         android:layout_height="40dp"
         android:autofillHints=""
         android:ems="10"
+        android:hint="@string/label_place"
         android:inputType="textShortMessage"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756"
+        app:layout_constraintVertical_bias="0.76"
         tools:ignore="LabelFor" />
+
+    <ImageButton
+        android:id="@+id/image_button_arrival2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_place"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.76"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/button_Search"
