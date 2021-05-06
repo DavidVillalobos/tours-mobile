@@ -1,5 +1,6 @@
 package com.example.android.tours_mobile.ui.explore
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -7,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,9 +28,8 @@ class ExploreFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var editTextDeparture : EditText
     private lateinit var editTextArrival : EditText
-    private lateinit var imageButtonDeparture : ImageButton
-    private lateinit var imageButtonArrival : ImageButton
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -40,31 +39,29 @@ class ExploreFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         editTextDeparture = view.findViewById(R.id.edit_text_departure)
         editTextArrival = view.findViewById(R.id.edit_text_arrival)
-        //imageButtonDeparture = view.findViewById(R.id.image_button_departure)
-        //imageButtonArrival = view.findViewById(R.id.image_button_arrival)
-
-        editTextDeparture.setOnClickListener(View.OnClickListener { // calender class's instance and get current date , month and year from calender
+        editTextDeparture.setOnClickListener {
             val c: Calendar = Calendar.getInstance()
-            val mYear: Int = c.get(Calendar.YEAR) // current year
-            val mMonth: Int = c.get(Calendar.MONTH) // current month
-            val mDay: Int = c.get(Calendar.DAY_OF_MONTH) // current day
+            val mYear: Int = c.get(Calendar.YEAR)
+            val mMonth: Int = c.get(Calendar.MONTH)
+            val mDay: Int = c.get(Calendar.DAY_OF_MONTH)
             datePickerDialog = DatePickerDialog(requireContext(),
-                    { _, year, monthOfYear, dayOfMonth -> // set day of month , month and year value in the edit text
+                    { _, year, monthOfYear, dayOfMonth ->
                         editTextDeparture.setText("${dayOfMonth}/${monthOfYear+1}/${year}")
                     }, mYear, mMonth, mDay)
             datePickerDialog!!.show()
-        })
-        editTextArrival.setOnClickListener(View.OnClickListener { // calender class's instance and get current date , month and year from calender
+        }
+
+        editTextArrival.setOnClickListener {
             val c: Calendar = Calendar.getInstance()
-            val mYear: Int = c.get(Calendar.YEAR) // current year
-            val mMonth: Int = c.get(Calendar.MONTH) // current month
-            val mDay: Int = c.get(Calendar.DAY_OF_MONTH) // current day
+            val mYear: Int = c.get(Calendar.YEAR)
+            val mMonth: Int = c.get(Calendar.MONTH)
+            val mDay: Int = c.get(Calendar.DAY_OF_MONTH)
             datePickerDialog = DatePickerDialog(requireContext(),
-                    { _, year, monthOfYear, dayOfMonth -> // set day of month , month and year value in the edit text
+                    { _, year, monthOfYear, dayOfMonth ->
                         editTextArrival.setText("${dayOfMonth}/${monthOfYear+1}/${year}")
                     }, mYear, mMonth, mDay)
             datePickerDialog!!.show()
-        })
+        }
         val photos :  MutableList<String> = mutableListOf();
         val places :  MutableList<String> = mutableListOf();
         val names :  MutableList<String> = mutableListOf();
@@ -73,7 +70,7 @@ class ExploreFragment : Fragment() {
         val reviews :  MutableList<Int> = mutableListOf();
 
         try {
-            val data = JSONObject(getJsonFromAssets("tours.json"))
+            val data = JSONObject(getToursFromJsonAssets())
             val tours: JSONArray = data.getJSONArray("tours")
             for (i in 0 until tours.length()) {
                 val tour = tours.getJSONObject(i)
@@ -96,9 +93,9 @@ class ExploreFragment : Fragment() {
         return view
     }
 
-    private fun getJsonFromAssets(fileName: String): String {
+    private fun getToursFromJsonAssets(): String {
         return try {
-            val file: InputStream = requireActivity().assets.open(fileName)
+            val file: InputStream = requireActivity().assets.open("tours.json")
             val size = file.available()
             val buffer = ByteArray(size)
             file.read(buffer)
