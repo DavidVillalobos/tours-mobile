@@ -1,12 +1,10 @@
 # Tours Mobile
+El proposito de este proyecto es diseñar e implementar una aplicacion Android   
+para la pagina de GetYourTour que permita visualizar los tours con sus detalles.
 
-El proposito de este proyecto es diseñar e implementar una aplicacion de la pagina de GetTourTour que permita visualizar tours con los detalles.
-
-## Construido
-
-Desarrollado con Kotlin en Android Studio
+## Herramientas
+Desarrollado con Kotlin utilizando el IDE Android Studio.
 
 ## Autores
-
 * Abigail Urbina Gómez.
 * David Villalobos González.
