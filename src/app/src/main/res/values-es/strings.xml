@@ -16,4 +16,12 @@
     <string name="label_place">Lugar</string>
     <string name="label_departure">Ida</string>
     <string name="label_arrival">Vuelta</string>
+    <string name="label_register">Registrarse</string>
+    <string name="label_name">Nombre</string>
+    <string name="label_last_name">Apellidos</string>
+    <string name="label_email">Correo</string>
+    <string name="label_password">Contraseña</string>
+    <string name="label_log_up">Registrarse</string>
+    <string name="label_not_notifications">No quiero recibir notificaciones</string>
+    <string name="label_privacy">politicas de privacidad</string>
 </resources>
