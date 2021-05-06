@@ -19,14 +19,18 @@
     <string name="label_register">Register</string>
     <string name="label_name">Name</string>
     <string name="label_last_name">Last name</string>
-    <string name="label_email">Email</string>
+    <string name="label_email">E-mail</string>
     <string name="label_password">Password</string>
-    <string name="label_log_up">Log up</string>
-    <string name="label_not_notifications">No quiero recibir notificaciones</string>
-    <string name="label_term">Al proceder aceptas los terminos</string>
-    <string name="label_privacy">politicas de privacidad</string>
-    <string name="label_forget_password">Contraseña olvidada</string>
-    <string name="label_have_account">Tienes una cuenta</string>
+    <string name="label_sign_in">Sign in</string>
+    <string name="label_not_notifications">I do not want to receive travel tips or promotions</string>
+    <string name="label_terms">By proceeding, you confirm that you accept our Terms of Use</string>
+    <string name="label_privacy">Privacy policies</string>
+    <string name="label_forget_password">Forgotten password?</string>
+    <string name="label_have_account">You have an account?</string>
     <string name="label_login">Log in</string>
-    <string name="label_not_have_account">No tienes una cuenta</string>
+    <string name="label_not_have_account">You do not have an account?</string>
+    <string name="title_register">Registry</string>
+    <string name="label_identification">Identification</string>
+    <string name="label_birthday">Birthday</string>
+    <string name="label_country">Country</string>
 </resources>
