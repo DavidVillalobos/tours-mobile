@@ -33,6 +33,16 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.android.tours_mobile.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_register"
+            app:destination="@id/fragment_register" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_register"
+        android:name="com.example.android.tours_mobile.ui.profile.RegisterFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_register"/>
 
 </navigation>
