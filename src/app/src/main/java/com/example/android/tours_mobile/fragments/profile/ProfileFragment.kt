@@ -1,4 +1,4 @@
-package com.example.android.tours_mobile.ui.profile
+package com.example.android.tours_mobile.fragments.profile
 
 import android.os.Bundle
 import android.text.Editable

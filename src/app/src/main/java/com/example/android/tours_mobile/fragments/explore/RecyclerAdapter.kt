@@ -1,4 +1,4 @@
-package com.example.android.tours_mobile.ui.explore
+package com.example.android.tours_mobile.fragments.explore
 
 import android.graphics.BitmapFactory
 import android.util.Base64

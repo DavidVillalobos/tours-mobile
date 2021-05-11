@@ -1,4 +1,4 @@
-package com.example.android.tours_mobile.ui.explore
+package com.example.android.tours_mobile.fragments.explore
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
