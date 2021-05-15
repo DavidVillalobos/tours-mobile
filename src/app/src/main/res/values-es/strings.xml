@@ -33,4 +33,5 @@
     <string name="label_identification">Cedula</string>
     <string name="label_birthday">Fecha nacimiento</string>
     <string name="label_country">País</string>
+    <string name="country_origin">Elegir país de origen</string>
 </resources>
