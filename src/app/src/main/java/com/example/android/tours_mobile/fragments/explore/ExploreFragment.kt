@@ -3,15 +3,16 @@ package com.example.android.tours_mobile.fragments.explore
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.tours_mobile.R
+import com.example.android.tours_mobile.databinding.FragmentExploreBinding
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -25,41 +26,31 @@ class ExploreFragment : Fragment() {
     private var adapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     private var layoutManager : RecyclerView.LayoutManager? = null
     private var datePickerDialog: DatePickerDialog? = null
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var editTextDeparture : EditText
-    private lateinit var editTextArrival : EditText
+    private var _binding: FragmentExploreBinding? = null
+    private val binding get() = _binding!!
 
+    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_explore, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
-        editTextDeparture = view.findViewById(R.id.edit_text_departure)
-        editTextArrival = view.findViewById(R.id.edit_text_arrival)
-        editTextDeparture.setOnClickListener {
+        _binding = FragmentExploreBinding.inflate(inflater, container, false)
+        binding.editTextDeparture.setOnClickListener {
             val c: Calendar = Calendar.getInstance()
-            val mYear: Int = c.get(Calendar.YEAR)
-            val mMonth: Int = c.get(Calendar.MONTH)
-            val mDay: Int = c.get(Calendar.DAY_OF_MONTH)
             datePickerDialog = DatePickerDialog(requireContext(),
                     { _, year, monthOfYear, dayOfMonth ->
-                        editTextDeparture.setText("${dayOfMonth}/${monthOfYear+1}/${year}")
-                    }, mYear, mMonth, mDay)
+                        binding.editTextDeparture.setText("${dayOfMonth}-${monthOfYear+1}-${year}")
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             datePickerDialog!!.show()
         }
-
-        editTextArrival.setOnClickListener {
+        binding.editTextArrival.setOnClickListener {
             val c: Calendar = Calendar.getInstance()
-            val mYear: Int = c.get(Calendar.YEAR)
-            val mMonth: Int = c.get(Calendar.MONTH)
-            val mDay: Int = c.get(Calendar.DAY_OF_MONTH)
             datePickerDialog = DatePickerDialog(requireContext(),
                     { _, year, monthOfYear, dayOfMonth ->
-                        editTextArrival.setText("${dayOfMonth}/${monthOfYear+1}/${year}")
-                    }, mYear, mMonth, mDay)
+                        binding.editTextArrival.setText("${dayOfMonth}-${monthOfYear+1}-${year}")
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             datePickerDialog!!.show()
         }
         val photos :  MutableList<String> = mutableListOf();
@@ -88,9 +79,9 @@ class ExploreFragment : Fragment() {
 
         adapter = RecyclerAdapter(photos, places, names, ratings, prices, reviews)
         layoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
-        return view
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = adapter
+        return binding.root
     }
 
     private fun getToursFromJsonAssets(): String {
