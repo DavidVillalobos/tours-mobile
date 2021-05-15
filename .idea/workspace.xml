@@ -20,11 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7e79c6b-a5d0-4e9a-9359-8c120de3f2c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/src/main/java/com/example/android/tours_mobile/inicio.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/src/main/java/com/example/android/tours_mobile/registro.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/src/main/java/com/example/android/tours_mobile/ui/register.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/src/main/res/layout/activity_inicio.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/src/main/res/layout/activity_registro.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
