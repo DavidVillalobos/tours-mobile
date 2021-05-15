@@ -9,22 +9,16 @@ import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ToggleButton
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.android.tours_mobile.R
-
+import com.example.android.tours_mobile.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var buttonSigIn : Button
-    private lateinit var buttonLogIn : Button
-    private lateinit var editTextEmail : EditText
-    private lateinit var editTextPassword : EditText
-    private lateinit var toggleEyeButton : ToggleButton
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,26 +26,18 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View {
-        val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
-        toggleEyeButton = view.findViewById(R.id.button_hide_password_login)
-        buttonSigIn = view.findViewById(R.id.button_sign_in)
-        buttonLogIn = view.findViewById(R.id.button_log_in)
-        editTextEmail = view.findViewById(R.id.edit_text_email)
-        editTextPassword = view.findViewById(R.id.edit_text_password)
-
-        toggleEyeButton.isChecked = false
-        toggleEyeButton.setOnClickListener{
-            if(toggleEyeButton.isChecked){
-                editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            }else{
-                editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-            }
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding.buttonHidePasswordLogin.isChecked = false
+        binding.buttonHidePasswordLogin.setOnClickListener{
+            binding.buttonHidePasswordLogin.transformationMethod =
+            if(binding.buttonHidePasswordLogin.isChecked) HideReturnsTransformationMethod.getInstance()
+            else PasswordTransformationMethod.getInstance()
         }
-        buttonSigIn.setOnClickListener(this)
-        buttonLogIn.isEnabled = false
-        editTextEmail.addTextChangedListener(editTextWatcher);
-        editTextPassword.addTextChangedListener(editTextWatcher);
-        return view
+        binding.buttonSignIn.setOnClickListener(this)
+        binding.buttonLogIn.isEnabled = false
+        binding.editTextEmail.addTextChangedListener(editTextWatcher);
+        binding.editTextPassword.addTextChangedListener(editTextWatcher);
+        return binding.root
     }
 
     override fun onClick(view: View?) {
@@ -61,7 +47,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private var editTextWatcher: TextWatcher = object : TextWatcher {
 
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            buttonLogIn.isEnabled = !(TextUtils.isEmpty(editTextEmail.text) or TextUtils.isEmpty(editTextPassword.text));
+            binding.buttonLogIn.isEnabled = !(TextUtils.isEmpty(binding.editTextEmail.text) or TextUtils.isEmpty(binding.editTextPassword.text));
         }
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             // TODO Auto-generated method stub
