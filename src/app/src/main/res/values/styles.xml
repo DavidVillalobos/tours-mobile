@@ -6,4 +6,11 @@
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">12sp</item>
     </style>
+    <style name="DatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/dark_blue</item>
+        <item name="android:buttonBarButtonStyle">@style/DatePickerTheme.ButtonBarButtonStyle</item>
+    </style>
+    <style name="DatePickerTheme.ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
 </resources>

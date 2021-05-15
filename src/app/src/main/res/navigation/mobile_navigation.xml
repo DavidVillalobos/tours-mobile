@@ -7,32 +7,42 @@
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.example.android.tours_mobile.ui.explore.ExploreFragment"
+        android:name="com.example.android.tours_mobile.fragments.explore.ExploreFragment"
         android:label="@string/title_explore"
         tools:layout="@layout/fragment_explore"/>
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.example.android.tours_mobile.ui.favorites.FavoritesFragment"
+        android:name="com.example.android.tours_mobile.fragments.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites"/>
 
     <fragment
         android:id="@+id/navigation_reservations"
-        android:name="com.example.android.tours_mobile.ui.reservations.ReservationsFragment"
+        android:name="com.example.android.tours_mobile.fragments.reservations.ReservationsFragment"
         android:label="@string/title_reservations"
         tools:layout="@layout/fragment_reservations"/>
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.android.tours_mobile.ui.notifications.NotificationsFragment"
+        android:name="com.example.android.tours_mobile.fragments.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications"/>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.android.tours_mobile.ui.profile.ProfileFragment"
+        android:name="com.example.android.tours_mobile.fragments.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_register"
+            app:destination="@id/fragment_register" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_register"
+        android:name="com.example.android.tours_mobile.fragments.profile.RegisterFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_register"/>
 
 </navigation>
