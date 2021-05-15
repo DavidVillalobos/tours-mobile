@@ -2,147 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.profile.ProfileFragment">
+    tools:context=".ui.profile.ProfileFragment">
 
     <TextView
-        android:id="@+id/text_view_profile"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:text="@string/title_profile"
+        android:id="@+id/text_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:textAlignment="center"
-        android:textColor="@color/dark_blue"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
-
-    <EditText
-        android:id="@+id/edit_text_password"
-        android:layout_width="170dp"
-        android:layout_height="40dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/label_password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
-
-    <Button
-        android:id="@+id/button_log_in"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-
-        android:text="@string/label_login"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
-
-    <EditText
-        android:id="@+id/edit_text_email"
-        android:layout_width="170dp"
-        android:layout_height="40dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/label_email"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318"
-        tools:ignore="TextFields" />
-
-    <Button
-        android:id="@+id/button_sign_in"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="@string/label_sign_in"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
-
-    <TextView
-        android:id="@+id/text_view_not_have_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/label_not_have_account"
-        android:textColorHint="@color/dark_blue"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.704" />
-
-    <Button
-        android:id="@+id/button_forgot_password"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="270dp"
-        android:layout_height="45dp"
-        android:backgroundTint="@android:color/transparent"
-        android:shadowColor="@android:color/transparent"
-        android:text="@string/label_forget_password"
-        android:textColor="@color/light_blue"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488"
-        tools:ignore="SmallSp" />
-
-    <TextView
-        android:id="@+id/text_view_have_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/label_have_account"
-        android:textColorHint="@color/dark_blue"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239" />
-
-    <ToggleButton
-        android:id="@+id/button_hide_password_login"
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:background="@drawable/button_show_password"
-        android:checked="false"
-        android:text=""
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
