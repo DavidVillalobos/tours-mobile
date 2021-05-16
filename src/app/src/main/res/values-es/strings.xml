@@ -21,7 +21,7 @@
     <string name="label_last_name">Apellidos</string>
     <string name="label_email">E-mail</string>
     <string name="label_password">Contraseña</string>
-    <string name="label_sign_in">Registrarse</string>
+    <string name="label_sign_up">Registrarse</string>
     <string name="label_not_notifications">No quiero recibir consejos de viaje ni promociones</string>
     <string name="label_terms">Al proceder, confirmas que aceptas nuestros Términos de uso.</string>
     <string name="label_privacy">Politicas de privacidad</string>
@@ -33,5 +33,19 @@
     <string name="label_identification">Cedula</string>
     <string name="label_birthday">Fecha nacimiento</string>
     <string name="label_country">País</string>
-    <string name="country_origin">Elegir país de origen</string>
+    <string name="country_origin">Elige país de origen</string>
+    <string name="required_identification">Identificacion Requerida</string>
+    <string name="required_name">Nombre Requerido</string>
+    <string name="required_last_name">Apellido Requerido</string>
+    <string name="required_birthday">Cumpleanos requerido</string>
+    <string name="required_email">Correo requerido</string>
+    <string name="required_format_email">Formato de Correo no valido</string>
+    <string name="required_password">Contrasena requerido</string>
+    <string name="required_password_extension">Extension mínima requerida (8 caracteres)</string>
+    <string name="required_password_numbers">Al menos un digito requerido</string>
+    <string name="required_password_lower">Al menos una minúscula requerida</string>
+    <string name="required_password_upper">Al menos una mayúscula requerida</string>
+    <string name="required_password_especial_character">Al menos un carácter especial requerido</string>
+    <string name="user_register_success">Registro de usuario exitoso</string>
+    <string name="user_register_failed">Registro de usuario fallido</string>
 </resources>
