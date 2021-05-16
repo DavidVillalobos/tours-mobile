@@ -21,7 +21,7 @@
     <string name="label_last_name">Last name</string>
     <string name="label_email">E-mail</string>
     <string name="label_password">Password</string>
-    <string name="label_sign_in">Sign in</string>
+    <string name="label_sign_up">Sign up</string>
     <string name="label_not_notifications">I do not want to receive travel tips or promotions</string>
     <string name="label_terms">By proceeding, you confirm that you accept our Terms of Use</string>
     <string name="label_privacy">Privacy policies</string>
@@ -34,4 +34,17 @@
     <string name="label_birthday">Birthday</string>
     <string name="label_country">Country</string>
     <string name="country_origin">Choose country of origin</string>
+    <string name="required_identification">Identification required</string>
+    <string name="required_name">Name required</string>
+    <string name="required_last_name">Last Name required</string>
+    <string name="required_birthday">Birthday required</string>
+    <string name="required_email">Email required</string>
+    <string name="required_format_email">Invalid email format</string>
+    <string name="required_password">Password required</string>
+    <string name="required_password_extension">Minimum length required (8 characters)</string>
+    <string name="required_password_numbers">At least one digit required</string>
+    <string name="required_password_lower">At least one lowercase required</string>
+    <string name="required_password_upper">At least one capital letter required</string>
+    <string name="required_password_especial_character">At least one special character required</string>
+    <string name="user_register_success">Registered user successfully</string>
 </resources>
