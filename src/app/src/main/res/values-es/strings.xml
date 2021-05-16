@@ -46,5 +46,6 @@
     <string name="required_password_lower">Al menos una minúscula requerida</string>
     <string name="required_password_upper">Al menos una mayúscula requerida</string>
     <string name="required_password_especial_character">Al menos un carácter especial requerido</string>
-    <string name="user_register_success">Usuario Registrado con éxito</string>
+    <string name="user_register_success">Registro de usuario exitoso</string>
+    <string name="user_register_failed">Registro de usuario fallido</string>
 </resources>

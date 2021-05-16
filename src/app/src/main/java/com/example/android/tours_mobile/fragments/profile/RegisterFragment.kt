@@ -25,6 +25,7 @@ import com.example.android.tours_mobile.R
 import com.example.android.tours_mobile.ServiceAdapter
 import com.example.android.tours_mobile.databinding.FragmentRegisterBinding
 import com.example.android.tours_mobile.services.dto.CountryDTO
+import com.example.android.tours_mobile.services.dto.UserDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -93,26 +94,33 @@ class RegisterFragment : Fragment() {
             val c: Calendar = Calendar.getInstance()
             datePickerDialog = DatePickerDialog(requireContext(),
                     { _, year, monthOfYear, dayOfMonth ->
-                        binding.editTextBirthday.setText("${dayOfMonth}-${monthOfYear + 1}-${year}")
+                        val month = monthOfYear + 1
+                        var fm = "" + month
+                        var fd = "" + dayOfMonth
+                        if (month < 10) {
+                            fm = "0$month"
+                        }
+                        if (dayOfMonth < 10) {
+                            fd = "0$dayOfMonth"
+                        }
+                        binding.editTextBirthday.setText("$year-$fm-$fd")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             datePickerDialog!!.datePicker.maxDate = Date().time
             datePickerDialog!!.show()
         }
 
         binding.buttonSignUp.setOnClickListener{
-            /*val user : UserDTO = UserDTO(
-                1,
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                0);
+            val countrySelected = binding.spinnerCountry.selectedItem as CountryDTO;
+            val user : UserDTO = UserDTO(
+                0, countrySelected, binding.editTextEmailRegister.text.toString(),
+                binding.editTextPasswordRegister.text.toString(), binding.editTextName.text.toString(),
+                binding.editTextLastName.text.toString(), binding.editTextIdentification.text.toString(),
+                binding.editTextBirthday.text.toString(), 0);
             ServiceAdapter.getUserService().createUser(user).enqueue(object : Callback<Int> {
                 override fun onFailure(call: Call<Int>, t: Throwable) {
                     Log.d("TAG_", "An error happened!")
+                    val toast = Toast.makeText(requireContext(), getString(R.string.user_register_failed), Toast.LENGTH_LONG)
+                    toast.show()
                 }
                 override fun onResponse(
                     call: Call<Int>,
@@ -120,13 +128,16 @@ class RegisterFragment : Fragment() {
                 ) {
                     Log.d("TAG_", response.body().toString())
                     if(response.isSuccessful) {
-
+                        val toast = Toast.makeText(requireContext(), getString(R.string.user_register_success), Toast.LENGTH_LONG)
+                        toast.show()
+                        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_register_to_profile)
+                    }else{
+                        val toast = Toast.makeText(requireContext(), getString(R.string.user_register_failed), Toast.LENGTH_LONG)
+                        toast.show()
                     }
                 }
-            })*/
-            val toast = Toast.makeText(requireContext(), getString(R.string.user_register_success), Toast.LENGTH_LONG)
-            toast.show()
-            Navigation.findNavController(requireView()).navigate(R.id.action_navigation_register_to_profile)
+            })
+
         }
         return binding.root
     }

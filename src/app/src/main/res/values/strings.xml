@@ -46,5 +46,6 @@
     <string name="required_password_lower">At least one lowercase required</string>
     <string name="required_password_upper">At least one capital letter required</string>
     <string name="required_password_especial_character">At least one special character required</string>
-    <string name="user_register_success">Registered user successfully</string>
+    <string name="user_register_success">User registration successful</string>
+    <string name="user_register_failed">User registration failed</string>
 </resources>
