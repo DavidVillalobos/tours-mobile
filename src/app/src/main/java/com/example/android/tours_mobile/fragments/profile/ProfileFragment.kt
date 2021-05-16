@@ -15,7 +15,7 @@ import androidx.navigation.Navigation
 import com.example.android.tours_mobile.R
 import com.example.android.tours_mobile.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment(), View.OnClickListener {
+class ProfileFragment : Fragment(){
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -29,19 +29,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.buttonHidePasswordLogin.isChecked = false
         binding.buttonHidePasswordLogin.setOnClickListener{
-            binding.buttonHidePasswordLogin.transformationMethod =
+            binding.editTextPassword.transformationMethod =
             if(binding.buttonHidePasswordLogin.isChecked) HideReturnsTransformationMethod.getInstance()
             else PasswordTransformationMethod.getInstance()
         }
-        binding.buttonSignIn.setOnClickListener(this)
+        binding.buttonSignUp.setOnClickListener{
+            Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_register)
+        }
         binding.buttonLogIn.isEnabled = false
         binding.editTextEmail.addTextChangedListener(editTextWatcher);
         binding.editTextPassword.addTextChangedListener(editTextWatcher);
         return binding.root
-    }
-
-    override fun onClick(view: View?) {
-        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_register)
     }
 
     private var editTextWatcher: TextWatcher = object : TextWatcher {
