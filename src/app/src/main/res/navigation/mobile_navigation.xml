@@ -43,6 +43,10 @@
         android:id="@+id/fragment_register"
         android:name="com.example.android.tours_mobile.fragments.profile.RegisterFragment"
         android:label="@string/title_register"
-        tools:layout="@layout/fragment_register"/>
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_navigation_register_to_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 
 </navigation>
