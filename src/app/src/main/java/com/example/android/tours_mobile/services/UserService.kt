@@ -15,7 +15,7 @@ interface UserService {
     fun authenticateUser(@Body user: UserDTO): Call<UserDTO>
 
     @POST("/api/v1/users")
-    fun createUser(@Body user: UserDTO): Call<UserDTO>
+    fun createUser(@Body user: UserDTO): Call<Int>
 
     @PUT("/api/v1/users")
     fun updateUser(@Body user: UserDTO): Call<UserDTO>
