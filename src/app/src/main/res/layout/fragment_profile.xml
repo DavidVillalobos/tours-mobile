@@ -17,10 +17,23 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.649"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.055" />
+
+    <ImageButton
+        android:id="@+id/image_button_account"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/ic_account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055"
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/screen_login"
@@ -28,21 +41,31 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <EditText
-            android:id="@+id/edit_text_email"
-            android:layout_width="270dp"
+        <ImageButton
+            android:id="@+id/image_button_password_login"
+            android:layout_width="40dp"
             android:layout_height="40dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/label_email"
-            android:inputType="text"
+            android:background="@drawable/ic_password"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.357"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/image_button_email_login"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.244"
-            tools:ignore="TextFields" />
+            tools:ignore="ContentDescription" />
 
         <Button
             android:id="@+id/button_forgot_password"
@@ -73,14 +96,14 @@
             android:textOn=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.806"
+            app:layout_constraintHorizontal_bias="0.956"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.357" />
 
         <EditText
             android:id="@+id/edit_text_password"
-            android:layout_width="210dp"
+            android:layout_width="230dp"
             android:layout_height="40dp"
             android:autofillHints=""
             android:ems="10"
@@ -88,19 +111,35 @@
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.353"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.357" />
 
+        <EditText
+            android:id="@+id/edit_text_email"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/label_email"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.244"
+            tools:ignore="TextFields" />
+
         <Button
             android:id="@+id/button_log_in"
-            android:layout_width="200dp"
+            android:layout_width="170dp"
             android:layout_height="40dp"
-
             android:text="@string/label_login"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:drawableEnd="@drawable/ic_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -124,12 +163,13 @@
 
         <Button
             android:id="@+id/button_sign_up"
-            android:layout_width="200dp"
+            android:layout_width="170dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/dark_blue"
             android:text="@string/label_sign_up"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:drawableEnd="@drawable/ic_register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -151,7 +191,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.736" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -159,6 +198,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
+
+        <ImageButton
+            android:id="@+id/image_button_country"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_country"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.633"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text_view_birthday"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:hint="@string/label_birthday"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.587"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.764" />
+
+        <ImageButton
+            android:id="@+id/image_button_birthday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_birthday"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.742"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/text_view_name"
@@ -169,25 +248,95 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.587"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.256"/>
+            app:layout_constraintVertical_bias="0.306" />
+
+        <TextView
+            android:id="@+id/text_view_last_name"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:hint="@string/label_last_name"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.587"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421" />
+
+        <TextView
+            android:id="@+id/text_view_email"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:hint="@string/label_email"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.587"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.547" />
+
+        <ImageButton
+            android:id="@+id/image_button_email"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.528"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text_view_country"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:hint="@string/label_country"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.587"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.649" />
+
+        <TextView
+            android:id="@+id/text_view_identification"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:hint="@string/label_identification"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.587"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.201" />
 
         <Button
             android:id="@+id/button_log_out"
-            android:layout_width="200dp"
+            android:layout_width="170dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/red"
+            android:drawableEnd="@drawable/ic_logout"
             android:text="@string/label_log_out"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.467"/>
+            app:layout_constraintVertical_bias="0.891" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

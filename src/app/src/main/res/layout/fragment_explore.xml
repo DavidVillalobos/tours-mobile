@@ -9,21 +9,21 @@
 
     <EditText
         android:id="@+id/edit_text_departure"
-        android:layout_width="120dp"
+        android:layout_width="230dp"
         android:layout_height="40dp"
         android:autofillHints=""
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/label_departure"
         android:inputType="date"
-        android:focusable="false"
-        android:clickable="true"
         android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@+id/edit_text_place"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545"
+        app:layout_constraintVertical_bias="0.093"
         tools:ignore="LabelFor" />
 
     <ImageButton
@@ -31,48 +31,48 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/ic_calendar"
-        app:layout_constraintBottom_toTopOf="@+id/image_button_arrival2"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.544"
+        app:layout_constraintVertical_bias="0.094"
         tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/edit_text_arrival"
-        android:layout_width="120dp"
+        android:layout_width="230dp"
         android:layout_height="40dp"
         android:autofillHints=""
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/label_arrival"
         android:inputType="date"
-        android:focusable="false"
-        android:clickable="true"
         android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@+id/button_Search"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.385" />
 
     <ImageButton
         android:id="@+id/image_button_departure"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/ic_calendar"
-        app:layout_constraintBottom_toTopOf="@+id/button_Search"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545"
+        app:layout_constraintVertical_bias="0.385"
         tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/edit_text_place"
-        android:layout_width="120dp"
+        android:layout_width="230dp"
         android:layout_height="40dp"
         android:autofillHints=""
         android:ems="10"
@@ -80,10 +80,10 @@
         android:inputType="textShortMessage"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
+        app:layout_constraintVertical_bias="0.678"
         tools:ignore="LabelFor" />
 
     <ImageButton
@@ -93,27 +93,27 @@
         android:background="@drawable/ic_place"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
+        app:layout_constraintVertical_bias="0.678"
         tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/button_Search"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
+        android:layout_width="152dp"
+        android:layout_height="39dp"
         android:drawableLeft="@drawable/ic_search"
         android:text="@string/label_button_search"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.324"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
+        app:layout_constraintVertical_bias="0.995"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
@@ -129,7 +129,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="480dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
