@@ -37,6 +37,8 @@ class RegisterFragment : Fragment() {
     private var datePickerDialog: DatePickerDialog? = null
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private TextInputLayout textEmail;
+    private TextInputLayout textPass;
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -202,6 +204,63 @@ class RegisterFragment : Fragment() {
             }
         }
         binding.buttonSignUp.isEnabled = isValid
+    }
+    public static final Pattern dir_email
+    = Pattern.compile(
+    "[a-zA-z0-9\\+\\.\\_\\%\\-\\+][1,256]" +
+    "\\@" +
+    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+    "(" +
+    "\\." +
+    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+    ")+"
+    );
+    Private static final Pattern_pass
+    = Pattern.compile("^" +
+    "(?=,*[0-9])" +
+    "(?=,*[a-z])" +
+    "(?=,*[A-Z])" +
+    "(?=,*[@#$%^&+=])" +
+    "(?=,\\S+$)" +
+    ".{8,}" +
+    "$");
+
+    protected void onCreate(Bundle  savedInstanceState){
+        super.onCreate(Bundle saveInstanceState);
+        setContentView(R.layout.MainActivity);
+
+        textEmail = findViewById(R.id.text_email);
+        textPass = findViewById(R.id.text_Pass);
+    }
+    private boolean validateEmail() {
+
+        String email = textEmail.getEditTextPasswordRegister().getText().toString().trim();
+        if (email.isEmpty()){
+            textEmail.setError("no puede ser vacio");
+            return false;}
+        else if (!Patterns.dir_email.matcher(email).matches()){
+            textEmail.setError("insertar un email valido");
+            return false;}
+        else {
+            textEmail.setError(null);
+            return true;
+
+        }
+    }
+    private boolean validatePassword() {
+
+        String pass = textPass.getEditTextPasswordRegister().getText().toString().trim();
+        if (pass.isEmpty()){
+            textPass.setError("no puede ser vacio");
+            return false;}
+        else if (!Patterns.Pattern_pass.matcher(email).matches()){
+            textEmail.setError("password sencilla");
+            return false;}
+        else {
+            textPass.setError(null);
+            return true;
+
+        }
     }
 
 }
