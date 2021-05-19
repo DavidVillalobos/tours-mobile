@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_register"
             app:destination="@id/fragment_register" />
+        <action
+            android:id="@+id/action_navigation_profile_to_explore"
+            app:destination="@id/navigation_explore" />
     </fragment>
 
     <fragment
