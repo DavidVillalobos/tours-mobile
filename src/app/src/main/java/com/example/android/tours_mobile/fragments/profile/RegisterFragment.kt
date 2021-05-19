@@ -37,8 +37,6 @@ class RegisterFragment : Fragment() {
     private var datePickerDialog: DatePickerDialog? = null
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private TextInputLayout textEmail;
-    private TextInputLayout textPass;
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +63,6 @@ class RegisterFragment : Fragment() {
                 // TODO Auto-generated method stub
             }
         }
-
         binding.editTextIdentification.addTextChangedListener { validateFields() }
         binding.editTextName.addTextChangedListener { validateFields() }
         binding.editTextLastName.addTextChangedListener { validateFields() }
@@ -113,7 +110,7 @@ class RegisterFragment : Fragment() {
 
         binding.buttonSignUp.setOnClickListener{
             val countrySelected = binding.spinnerCountry.selectedItem as CountryDTO;
-            val user : UserDTO = UserDTO(
+            val user = UserDTO(
                 0, countrySelected, binding.editTextEmailRegister.text.toString(),
                 binding.editTextPasswordRegister.text.toString(), binding.editTextName.text.toString(),
                 binding.editTextLastName.text.toString(), binding.editTextIdentification.text.toString(),
@@ -139,7 +136,6 @@ class RegisterFragment : Fragment() {
                     }
                 }
             })
-
         }
         return binding.root
     }
@@ -175,7 +171,7 @@ class RegisterFragment : Fragment() {
             binding.editTextEmailRegister.error = getString(R.string.required_email)
             isValid = false
         }else{
-            val email = binding.editTextEmailRegister.text.toString()
+            val email = binding.editTextEmailRegister.text.toString().trim()
             if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 binding.editTextEmailRegister.error = getString(R.string.required_format_email)
                 isValid = false
@@ -185,7 +181,7 @@ class RegisterFragment : Fragment() {
             binding.editTextPasswordRegister.error = getString(R.string.required_password)
             isValid = false
         }else {
-            val password = binding.editTextPasswordRegister.text
+            val password = binding.editTextPasswordRegister.text.toString().trim()
             if (password.length < 8) {
                 binding.editTextPasswordRegister.error = getString(R.string.required_password_extension)
                 isValid = false
@@ -205,62 +201,4 @@ class RegisterFragment : Fragment() {
         }
         binding.buttonSignUp.isEnabled = isValid
     }
-    public static final Pattern dir_email
-    = Pattern.compile(
-    "[a-zA-z0-9\\+\\.\\_\\%\\-\\+][1,256]" +
-    "\\@" +
-    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-    "(" +
-    "\\." +
-    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-    ")+"
-    );
-    Private static final Pattern_pass
-    = Pattern.compile("^" +
-    "(?=,*[0-9])" +
-    "(?=,*[a-z])" +
-    "(?=,*[A-Z])" +
-    "(?=,*[@#$%^&+=])" +
-    "(?=,\\S+$)" +
-    ".{8,}" +
-    "$");
-
-    protected void onCreate(Bundle  savedInstanceState){
-        super.onCreate(Bundle saveInstanceState);
-        setContentView(R.layout.MainActivity);
-
-        textEmail = findViewById(R.id.text_email);
-        textPass = findViewById(R.id.text_Pass);
-    }
-    private boolean validateEmail() {
-
-        String email = textEmail.getEditTextPasswordRegister().getText().toString().trim();
-        if (email.isEmpty()){
-            textEmail.setError("no puede ser vacio");
-            return false;}
-        else if (!Patterns.dir_email.matcher(email).matches()){
-            textEmail.setError("insertar un email valido");
-            return false;}
-        else {
-            textEmail.setError(null);
-            return true;
-
-        }
-    }
-    private boolean validatePassword() {
-
-        String pass = textPass.getEditTextPasswordRegister().getText().toString().trim();
-        if (pass.isEmpty()){
-            textPass.setError("no puede ser vacio");
-            return false;}
-        else if (!Patterns.Pattern_pass.matcher(email).matches()){
-            textEmail.setError("password sencilla");
-            return false;}
-        else {
-            textPass.setError(null);
-            return true;
-
-        }
-    }
-
 }
