@@ -48,4 +48,7 @@
     <string name="required_password_especial_character">At least one special character required</string>
     <string name="user_register_success">User registration successful</string>
     <string name="user_register_failed">User registration failed</string>
+    <string name="user_login_failed">User does not exist</string>
+    <string name="user_login_success">Login successful</string>
+    <string name="label_log_out">Logout</string>
 </resources>
