@@ -46,28 +46,34 @@ class ProfileFragment : Fragment(){
         if(sharedPreferences?.contains("user")!!) {
             val json: String? = sharedPreferences?.getString("user", "")
             val user: UserDTO = Gson().fromJson(json, UserDTO::class.java)
-            binding.textViewName.text = "${user.name} ${user.lastName}"
+            binding.textViewIdentification.text = user.identification
+            binding.textViewName.text = user.name
+            binding.textViewLastName.text = user.lastName
+            binding.textViewEmail.text = user.email
+            binding.textViewCountry.text = user.country.name
+            binding.textViewBirthday.text = user.birthday
             binding.screenLogin.visibility = INVISIBLE;
             binding.screenProfile.visibility = VISIBLE;
-            binding.buttonLogOut.setOnClickListener{logout()}
-        }else {
-            binding.buttonHidePasswordLogin.isChecked = false
-            binding.buttonHidePasswordLogin.setOnClickListener {
-                binding.editTextPassword.transformationMethod =
-                    if (binding.buttonHidePasswordLogin.isChecked) HideReturnsTransformationMethod.getInstance()
-                    else PasswordTransformationMethod.getInstance()
-            }
-            binding.buttonSignUp.setOnClickListener {
-                Navigation.findNavController(requireView())
-                    .navigate(R.id.action_navigation_profile_to_register)
-            }
-            binding.buttonLogIn.isEnabled = false
-            binding.editTextEmail.addTextChangedListener { validateFields(); }
-            binding.editTextPassword.addTextChangedListener { validateFields(); };
-
-            binding.buttonLogIn.setOnClickListener { login() }
-            validateFields()
+        }else{
+            binding.screenLogin.visibility = VISIBLE;
+            binding.screenProfile.visibility = INVISIBLE;
         }
+        binding.buttonLogOut.setOnClickListener{logout()}
+        binding.buttonHidePasswordLogin.isChecked = false
+        binding.buttonHidePasswordLogin.setOnClickListener {
+            binding.editTextPassword.transformationMethod =
+                if (binding.buttonHidePasswordLogin.isChecked) HideReturnsTransformationMethod.getInstance()
+                else PasswordTransformationMethod.getInstance()
+        }
+        binding.buttonSignUp.setOnClickListener {
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_navigation_profile_to_register)
+        }
+        binding.buttonLogIn.isEnabled = false
+        binding.editTextEmail.addTextChangedListener { validateFields(); }
+        binding.editTextPassword.addTextChangedListener { validateFields(); };
+        binding.buttonLogIn.setOnClickListener { login() }
+        validateFields()
         return binding.root
     }
 
@@ -144,6 +150,7 @@ class ProfileFragment : Fragment(){
         editor?.commit()
         binding.screenLogin.visibility = VISIBLE;
         binding.screenProfile.visibility = INVISIBLE;
+        validateFields();
     }
 
 }
