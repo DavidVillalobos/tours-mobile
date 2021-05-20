@@ -39,7 +39,7 @@
         android:id="@+id/screen_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageButton
             android:id="@+id/image_button_password_login"
@@ -197,7 +197,7 @@
         android:id="@+id/screen_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <ImageButton
             android:id="@+id/image_button_country"
