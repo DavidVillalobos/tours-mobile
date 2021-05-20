@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ServiceAdapter{
 
-    private const val BASE_URL: String = "http://3c68714763d6.ngrok.io"
+    private const val BASE_URL: String = " http://3a2d5cb892d7.ngrok.io"
 
     private var user_service : UserService
     private var country_service : CountryService

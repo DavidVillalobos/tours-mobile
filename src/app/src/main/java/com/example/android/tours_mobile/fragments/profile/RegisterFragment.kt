@@ -50,7 +50,6 @@ class RegisterFragment : Fragment() {
 
         val arrayAdapter : ArrayAdapter<CountryDTO> = ArrayAdapter<CountryDTO>(requireContext(), android.R.layout.simple_spinner_item, mutableListOf())
         arrayAdapter.add(CountryDTO(-1, getString(com.example.android.tours_mobile.R.string.country_origin), emptyList()));
-        arrayAdapter.add(CountryDTO(1, "Costa Rica", emptyList()));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCountry.adapter = arrayAdapter
         binding.spinnerCountry.prompt = getString(com.example.android.tours_mobile.R.string.label_country)
