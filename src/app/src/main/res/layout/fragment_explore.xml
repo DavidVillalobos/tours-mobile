@@ -20,10 +20,10 @@
         android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.259"
+        app:layout_constraintHorizontal_bias="0.624"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093"
+        app:layout_constraintVertical_bias="0.094"
         tools:ignore="LabelFor" />
 
     <ImageButton
@@ -33,10 +33,10 @@
         android:background="@drawable/ic_calendar"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094"
+        app:layout_constraintVertical_bias="0.095"
         tools:ignore="ContentDescription" />
 
     <EditText
@@ -52,10 +52,10 @@
         android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.259"
+        app:layout_constraintHorizontal_bias="0.624"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385" />
+        app:layout_constraintVertical_bias="0.388" />
 
     <ImageButton
         android:id="@+id/image_button_departure"
@@ -64,10 +64,10 @@
         android:background="@drawable/ic_calendar"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385"
+        app:layout_constraintVertical_bias="0.388"
         tools:ignore="ContentDescription" />
 
     <EditText
@@ -80,10 +80,10 @@
         android:inputType="textShortMessage"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.259"
+        app:layout_constraintHorizontal_bias="0.624"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678"
+        app:layout_constraintVertical_bias="0.677"
         tools:ignore="LabelFor" />
 
     <ImageButton
@@ -93,16 +93,16 @@
         android:background="@drawable/ic_place"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678"
+        app:layout_constraintVertical_bias="0.677"
         tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/button_Search"
-        android:layout_width="152dp"
-        android:layout_height="39dp"
+        android:layout_width="173dp"
+        android:layout_height="45dp"
         android:drawableLeft="@drawable/ic_search"
         android:text="@string/label_button_search"
         android:textAlignment="center"
@@ -110,10 +110,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.995"
+        app:layout_constraintVertical_bias="0.956"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
