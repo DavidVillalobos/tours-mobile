@@ -19,6 +19,8 @@ import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ExploreFragment : Fragment() {
@@ -29,8 +31,8 @@ class ExploreFragment : Fragment() {
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
 
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -43,6 +45,7 @@ class ExploreFragment : Fragment() {
                     { _, year, monthOfYear, dayOfMonth ->
                         binding.editTextDeparture.setText("${dayOfMonth}-${monthOfYear+1}-${year}")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
+            binding.editTextArrival.text.clear()
             datePickerDialog!!.show()
         }
         binding.editTextArrival.setOnClickListener {
@@ -51,6 +54,11 @@ class ExploreFragment : Fragment() {
                     { _, year, monthOfYear, dayOfMonth ->
                         binding.editTextArrival.setText("${dayOfMonth}-${monthOfYear+1}-${year}")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
+            if(binding.editTextDeparture.text.toString() != "") {
+                val df : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+                val date : Date? = df.parse(binding.editTextDeparture.text.toString())
+                datePickerDialog!!.datePicker.minDate = date!!.time
+            }
             datePickerDialog!!.show()
         }
         val photos :  MutableList<String> = mutableListOf();
