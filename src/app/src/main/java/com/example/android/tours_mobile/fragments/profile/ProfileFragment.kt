@@ -16,21 +16,20 @@ import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.android.tours_mobile.R
-import com.example.android.tours_mobile.ServiceAdapter
 import com.example.android.tours_mobile.databinding.FragmentProfileBinding
 import com.example.android.tours_mobile.services.dto.UserDTO
+import com.example.android.tours_mobile.viewmodels.ProfileViewModel
 import com.google.gson.Gson
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class ProfileFragment : Fragment(){
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private val profileViewModel: ProfileViewModel by viewModels()
     private var sharedPreferences: SharedPreferences? = null
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
@@ -54,7 +53,7 @@ class ProfileFragment : Fragment(){
             binding.textViewBirthday.text = user.birthday
             binding.screenLogin.visibility = INVISIBLE;
             binding.screenProfile.visibility = VISIBLE;
-        }else{
+        }else {
             binding.screenLogin.visibility = VISIBLE;
             binding.screenProfile.visibility = INVISIBLE;
         }
@@ -115,10 +114,28 @@ class ProfileFragment : Fragment(){
     }
 
     private fun login(){
-        var user = UserDTO(
-                binding.editTextEmail.text.toString().trim(),
-                binding.editTextPassword.text.toString().trim());
-        ServiceAdapter.getUserService().authenticateUser(user).enqueue(object : Callback<UserDTO> {
+        val user = UserDTO(
+            binding.editTextEmail.text.toString().trim(),
+            binding.editTextPassword.text.toString().trim()
+        );
+        profileViewModel.authenticateUser(user)
+        profileViewModel.currentUser.observe(viewLifecycleOwner, {
+            if(it != null && it.id != -1){
+                Log.d("TAG_", "Login Successful!")
+                val toast = Toast.makeText(requireContext(), getString(R.string.user_login_success), Toast.LENGTH_LONG)
+                toast.show()
+                Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_explore)
+                // Save current user in SharePreferences
+                val editor = sharedPreferences?.edit()
+                editor?.putString("user", Gson().toJson(it))
+                editor?.commit()
+            }else if(it != null){
+                Log.d("TAG_", "An error happened!")
+                val toast = Toast.makeText(requireContext(), getString(R.string.user_login_failed), Toast.LENGTH_LONG)
+                toast.show()
+            }
+        })
+        /*ServiceAdapter.getUserService().authenticateUser(user).enqueue(object : Callback<UserDTO> {
             override fun onFailure(call: Call<UserDTO>, t: Throwable) {
                 Log.d("TAG_", "An error happened!")
                 val toast = Toast.makeText(requireContext(), getString(R.string.user_login_failed), Toast.LENGTH_LONG)
@@ -128,7 +145,7 @@ class ProfileFragment : Fragment(){
                     call: Call<UserDTO>,
                     response: Response<UserDTO>
             ) {
-                if(response.isSuccessful && response.body() != null) {
+                if(response.isSuccessful) {
                     val toast = Toast.makeText(requireContext(), getString(R.string.user_login_success), Toast.LENGTH_LONG)
                     toast.show()
                     Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_explore)
@@ -141,7 +158,7 @@ class ProfileFragment : Fragment(){
                 }
                 Log.d("TAG_", response.body().toString())
             }
-        })
+        })*/
     }
 
     private fun logout(){
