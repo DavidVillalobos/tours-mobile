@@ -1,4 +1,4 @@
-package com.example.android.tours_mobile.viewmodels
+package com.example.android.tours_mobile.viewmodels.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

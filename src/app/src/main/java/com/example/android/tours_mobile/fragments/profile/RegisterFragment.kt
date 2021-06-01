@@ -26,7 +26,7 @@ import com.example.android.tours_mobile.R
 import com.example.android.tours_mobile.databinding.FragmentRegisterBinding
 import com.example.android.tours_mobile.services.dto.CountryDTO
 import com.example.android.tours_mobile.services.dto.UserDTO
-import com.example.android.tours_mobile.viewmodels.RegisterViewModel
+import com.example.android.tours_mobile.viewmodels.profile.RegisterViewModel
 import java.util.*
 
 

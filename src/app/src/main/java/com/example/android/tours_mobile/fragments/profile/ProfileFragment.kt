@@ -21,7 +21,7 @@ import androidx.navigation.Navigation
 import com.example.android.tours_mobile.R
 import com.example.android.tours_mobile.databinding.FragmentProfileBinding
 import com.example.android.tours_mobile.services.dto.UserDTO
-import com.example.android.tours_mobile.viewmodels.ProfileViewModel
+import com.example.android.tours_mobile.viewmodels.profile.ProfileViewModel
 import com.google.gson.Gson
 
 
