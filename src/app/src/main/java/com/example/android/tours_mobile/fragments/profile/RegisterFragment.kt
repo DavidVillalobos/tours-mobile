@@ -20,15 +20,13 @@ import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.android.tours_mobile.R
-import com.example.android.tours_mobile.ServiceAdapter
 import com.example.android.tours_mobile.databinding.FragmentRegisterBinding
 import com.example.android.tours_mobile.services.dto.CountryDTO
 import com.example.android.tours_mobile.services.dto.UserDTO
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.android.tours_mobile.viewmodels.profile.RegisterViewModel
 import java.util.*
 
 
@@ -37,6 +35,8 @@ class RegisterFragment : Fragment() {
     private var datePickerDialog: DatePickerDialog? = null
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private val registerViewModel: RegisterViewModel by viewModels()
+
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +47,17 @@ class RegisterFragment : Fragment() {
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-
         val arrayAdapter : ArrayAdapter<CountryDTO> = ArrayAdapter<CountryDTO>(requireContext(), android.R.layout.simple_spinner_item, mutableListOf())
-        arrayAdapter.add(CountryDTO(-1, getString(com.example.android.tours_mobile.R.string.country_origin), emptyList()));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerCountry.adapter = arrayAdapter
         binding.spinnerCountry.prompt = getString(com.example.android.tours_mobile.R.string.label_country)
+        registerViewModel.getCountries()
+        registerViewModel.countries.observe(viewLifecycleOwner, {
+            arrayAdapter.clear()
+            arrayAdapter.add(CountryDTO(-1, getString(com.example.android.tours_mobile.R.string.country_origin), emptyList()));
+            arrayAdapter.addAll(it)
+            binding.spinnerCountry.adapter = arrayAdapter
+        })
+
         binding.buttonSignUp.isEnabled = false
         binding.spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -68,19 +73,6 @@ class RegisterFragment : Fragment() {
         binding.editTextBirthday.addTextChangedListener { validateFields() }
         binding.editTextEmailRegister.addTextChangedListener { validateFields() }
         binding.editTextPasswordRegister.addTextChangedListener { validateFields() }
-
-        ServiceAdapter.getCountryService().getCountries().enqueue(object : Callback<List<CountryDTO>> {
-            override fun onFailure(call: Call<List<CountryDTO>>, t: Throwable) {
-                Log.d("TAG_", "An error happened!")
-            }
-            override fun onResponse(
-                call: Call<List<CountryDTO>>,
-                response: Response<List<CountryDTO>>
-            ) {
-                Log.d("TAG_", response.body().toString())
-                if(response.isSuccessful) arrayAdapter.addAll(response.body().orEmpty())
-            }
-        })
 
         binding.buttonHidePasswordRegister.isChecked = false
         binding.buttonHidePasswordRegister.setOnClickListener{
@@ -106,7 +98,6 @@ class RegisterFragment : Fragment() {
             datePickerDialog!!.datePicker.maxDate = Date().time
             datePickerDialog!!.show()
         }
-
         binding.buttonSignUp.setOnClickListener{
             val countrySelected = binding.spinnerCountry.selectedItem as CountryDTO;
             val user = UserDTO(
@@ -114,25 +105,17 @@ class RegisterFragment : Fragment() {
                 binding.editTextPasswordRegister.text.toString(), binding.editTextName.text.toString(),
                 binding.editTextLastName.text.toString(), binding.editTextIdentification.text.toString(),
                 binding.editTextBirthday.text.toString(), 0);
-            ServiceAdapter.getUserService().createUser(user).enqueue(object : Callback<Int> {
-                override fun onFailure(call: Call<Int>, t: Throwable) {
+            registerViewModel.addUser(user)
+            registerViewModel.stateAddUser.observe(viewLifecycleOwner, {
+                if(registerViewModel.stateAddUser.value == -1) {
                     Log.d("TAG_", "An error happened!")
                     val toast = Toast.makeText(requireContext(), getString(R.string.user_register_failed), Toast.LENGTH_LONG)
                     toast.show()
                 }
-                override fun onResponse(
-                    call: Call<Int>,
-                    response: Response<Int>
-                ) {
-                    Log.d("TAG_", response.body().toString())
-                    if(response.isSuccessful) {
-                        val toast = Toast.makeText(requireContext(), getString(R.string.user_register_success), Toast.LENGTH_LONG)
-                        toast.show()
-                        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_register_to_profile)
-                    }else{
-                        val toast = Toast.makeText(requireContext(), getString(R.string.user_register_failed), Toast.LENGTH_LONG)
-                        toast.show()
-                    }
+                else if(registerViewModel.stateAddUser.value != 0){
+                    val toast = Toast.makeText(requireContext(), getString(R.string.user_register_success), Toast.LENGTH_LONG)
+                    toast.show()
+                    Navigation.findNavController(requireView()).navigate(R.id.action_navigation_register_to_profile)
                 }
             })
         }

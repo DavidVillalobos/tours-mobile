@@ -1,5 +1,6 @@
 package com.example.android.tours_mobile
 
+import com.example.android.tours_mobile.Constants.BASE_URL
 import com.example.android.tours_mobile.services.CityService
 import com.example.android.tours_mobile.services.CountryService
 import com.example.android.tours_mobile.services.UserService
@@ -8,8 +9,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ServiceAdapter{
-
-    private const val BASE_URL: String = " http://3a2d5cb892d7.ngrok.io"
 
     private var user_service : UserService
     private var country_service : CountryService
