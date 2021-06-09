@@ -3,6 +3,7 @@ package com.example.android.tours_mobile
 import com.example.android.tours_mobile.Constants.BASE_URL
 import com.example.android.tours_mobile.services.CityService
 import com.example.android.tours_mobile.services.CountryService
+import com.example.android.tours_mobile.services.TourService
 import com.example.android.tours_mobile.services.UserService
 
 import retrofit2.Retrofit
@@ -12,6 +13,7 @@ object ServiceAdapter{
 
     private var user_service : UserService
     private var country_service : CountryService
+    private var tour_service : TourService
     private var city_service : CityService
 
     init {
@@ -21,6 +23,7 @@ object ServiceAdapter{
                 .build()
         user_service = retrofit.create(UserService::class.java)
         country_service = retrofit.create(CountryService::class.java)
+        tour_service = retrofit.create(TourService::class.java)
         city_service = retrofit.create(CityService::class.java)
     }
 
@@ -32,8 +35,11 @@ object ServiceAdapter{
         return country_service;
     }
 
+    fun getTourService(): TourService {
+        return tour_service;
+    }
+
     fun getCityService(): CityService {
         return city_service;
     }
-
 }
