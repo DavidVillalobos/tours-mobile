@@ -51,4 +51,5 @@
     <string name="user_login_failed">Usuario no existe</string>
     <string name="user_login_success">Inicio de sesión exitoso</string>
     <string name="label_log_out">Cerrar Sesión</string>
+    <string name="label_duration">Duración</string>
 </resources>
