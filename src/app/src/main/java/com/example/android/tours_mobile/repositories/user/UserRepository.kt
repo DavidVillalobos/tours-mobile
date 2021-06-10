@@ -8,7 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserRepository {
-    var webServiceUser = ServiceAdapter.getUserService()
+    private var webServiceUser = ServiceAdapter.getUserService()
     var currentUser = MutableLiveData<UserDTO?>()
     var stateAddUser = MutableLiveData<Int>()
 

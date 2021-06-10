@@ -8,11 +8,10 @@ import com.example.android.tours_mobile.services.dto.CountryDTO
 import com.example.android.tours_mobile.services.dto.UserDTO
 
 class RegisterViewModel : ViewModel(){
-    var userRepository = UserRepository()
-    var countryRepository = CountryRepository()
+    private var userRepository = UserRepository()
+    private var countryRepository = CountryRepository()
     var countries = MutableLiveData<List<CountryDTO>>()
     var stateAddUser = MutableLiveData<Int>()
-
 
     init {
         countries = countryRepository.countries

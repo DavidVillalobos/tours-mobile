@@ -77,7 +77,7 @@ class ProfileFragment : Fragment(){
     }
 
     private fun validateFields() {
-        var isValid : Boolean = true;
+        var isValid : Boolean = true
         if (binding.editTextEmail.text.isEmpty()) {
             binding.editTextEmail.error = getString(R.string.required_email)
             isValid = false
