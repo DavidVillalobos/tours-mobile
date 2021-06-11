@@ -46,11 +46,21 @@ class ExploreFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
+        binding.progressBar.bringToFront() // show always in front
         binding.editTextDeparture.setOnClickListener {
             val c: Calendar = Calendar.getInstance()
             datePickerDialog = DatePickerDialog(requireContext(),
                     { _, year, monthOfYear, dayOfMonth ->
-                        binding.editTextDeparture.setText("${dayOfMonth}-${monthOfYear+1}-${year}")
+                        val month = monthOfYear + 1
+                        var fm = "" + month
+                        var fd = "" + dayOfMonth
+                        if (month < 10) {
+                            fm = "0$month"
+                        }
+                        if (dayOfMonth < 10) {
+                            fd = "0$dayOfMonth"
+                        }
+                        binding.editTextDeparture.setText("${year}-${fm}-${fd}")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             binding.editTextArrival.text.clear()
             datePickerDialog!!.show()
@@ -59,10 +69,19 @@ class ExploreFragment : Fragment() {
             val c: Calendar = Calendar.getInstance()
             datePickerDialog = DatePickerDialog(requireContext(),
                     { _, year, monthOfYear, dayOfMonth ->
-                        binding.editTextArrival.setText("${dayOfMonth}-${monthOfYear+1}-${year}")
+                        val month = monthOfYear + 1
+                        var fm = "" + month
+                        var fd = "" + dayOfMonth
+                        if (month < 10) {
+                            fm = "0$month"
+                        }
+                        if (dayOfMonth < 10) {
+                            fd = "0$dayOfMonth"
+                        }
+                        binding.editTextArrival.setText("${year}-${fm}-${fd}")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             if(binding.editTextDeparture.text.toString() != "") {
-                val df : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+                val df : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
                 val date : Date? = df.parse(binding.editTextDeparture.text.toString())
                 datePickerDialog!!.datePicker.minDate = date!!.time
             }
@@ -73,6 +92,19 @@ class ExploreFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
+        explorerViewModel.tours.observe(viewLifecycleOwner, {
+            adapter = RecyclerAdapter(it)
+            binding.recyclerView.adapter = adapter
+        })
+        explorerViewModel.stateSearch.observe(viewLifecycleOwner, {
+            binding.progressBar.visibility = when (it) {
+                // 0 -> not search yet
+                1 -> View.VISIBLE // in search
+                // 2 -> found success
+                // 3 -> not found tours
+                else -> View.GONE
+            }
+        })
         return binding.root
     }
 
@@ -91,9 +123,5 @@ class ExploreFragment : Fragment() {
             null
         }
         explorerViewModel.searchTours(place, departure, arrival, idUser)
-        explorerViewModel.tours.observe(viewLifecycleOwner, {
-            adapter = RecyclerAdapter(it)
-            binding.recyclerView.adapter = adapter
-        })
     }
 }

@@ -8,10 +8,12 @@ import com.example.android.tours_mobile.services.dto.TourDTO
 class ExploreViewModel : ViewModel(){
 
     var tours = MutableLiveData<List<TourDTO>>()
+    var stateSearch = MutableLiveData<Int>()
     private var toursRepository = TourRepository()
 
     init {
         tours = toursRepository.filterTours
+        stateSearch  = toursRepository.stateSearch
     }
 
     fun searchTours(place : String?, departure : String?, arrival : String?, id_user : Int?){
