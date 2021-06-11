@@ -77,7 +77,7 @@ class ProfileFragment : Fragment(){
     }
 
     private fun validateFields() {
-        var isValid : Boolean = true;
+        var isValid : Boolean = true
         if (binding.editTextEmail.text.isEmpty()) {
             binding.editTextEmail.error = getString(R.string.required_email)
             isValid = false
@@ -135,30 +135,6 @@ class ProfileFragment : Fragment(){
                 toast.show()
             }
         })
-        /*ServiceAdapter.getUserService().authenticateUser(user).enqueue(object : Callback<UserDTO> {
-            override fun onFailure(call: Call<UserDTO>, t: Throwable) {
-                Log.d("TAG_", "An error happened!")
-                val toast = Toast.makeText(requireContext(), getString(R.string.user_login_failed), Toast.LENGTH_LONG)
-                toast.show()
-            }
-            override fun onResponse(
-                    call: Call<UserDTO>,
-                    response: Response<UserDTO>
-            ) {
-                if(response.isSuccessful) {
-                    val toast = Toast.makeText(requireContext(), getString(R.string.user_login_success), Toast.LENGTH_LONG)
-                    toast.show()
-                    Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_explore)
-                    val editor = sharedPreferences?.edit()
-                    editor?.putString("user", Gson().toJson(response.body()))
-                    editor?.commit()
-                }else{
-                    val toast = Toast.makeText(requireContext(), getString(R.string.user_login_failed), Toast.LENGTH_LONG)
-                    toast.show()
-                }
-                Log.d("TAG_", response.body().toString())
-            }
-        })*/
     }
 
     private fun logout(){

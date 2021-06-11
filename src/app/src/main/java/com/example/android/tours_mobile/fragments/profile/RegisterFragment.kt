@@ -93,7 +93,7 @@ class RegisterFragment : Fragment() {
                         if (dayOfMonth < 10) {
                             fd = "0$dayOfMonth"
                         }
-                        binding.editTextBirthday.setText("$year-$fm-$fd")
+                        binding.editTextBirthday.setText("${year}-${fm}-${fd}")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             datePickerDialog!!.datePicker.maxDate = Date().time
             datePickerDialog!!.show()

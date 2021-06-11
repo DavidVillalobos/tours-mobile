@@ -7,7 +7,7 @@ import com.example.android.tours_mobile.services.dto.UserDTO
 
 class ProfileViewModel : ViewModel(){
     var currentUser = MutableLiveData<UserDTO?>()
-    var userRepository = UserRepository()
+    private var userRepository = UserRepository()
 
     init {
         currentUser = userRepository.currentUser

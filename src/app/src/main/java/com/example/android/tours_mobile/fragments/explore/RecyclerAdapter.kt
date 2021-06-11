@@ -10,16 +10,12 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.tours_mobile.R
+import com.example.android.tours_mobile.services.dto.TourDTO
 
 
 class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private var photos :  MutableList<String> = mutableListOf();
-    private var places :  MutableList<String> = mutableListOf();
-    private var names :  MutableList<String> = mutableListOf();
-    private var reviews :  MutableList<Int> = mutableListOf();
-    private var prices :  MutableList<Float> = mutableListOf();
-    private var ratings :  MutableList<Float> = mutableListOf();
+    private var tours :  List<TourDTO> = listOf();
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var itemImage: ImageView = itemView.findViewById(R.id.photo)
@@ -28,21 +24,11 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         var itemRating: RatingBar = itemView.findViewById(R.id.rating)
         var itemPrice: TextView = itemView.findViewById(R.id.price)
         var itemReviews: TextView = itemView.findViewById(R.id.reviews)
+        var itemDuration: TextView = itemView.findViewById(R.id.duration)
     }
 
-    constructor(photos : MutableList<String>,
-                places : MutableList<String>,
-                names : MutableList<String>,
-                ratings : MutableList<Float>,
-                prices : MutableList<Float>,
-                reviews : MutableList<Int>,
-    ) : this() {
-        this.photos = photos
-        this.places = places
-        this.names = names
-        this.ratings = ratings
-        this.prices = prices
-        this.reviews = reviews
+    constructor(tours : List<TourDTO>) : this() {
+        this.tours = tours
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -52,18 +38,19 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return names.size;
+        return tours.size;
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-        val decodedString: ByteArray = Base64.decode(photos[position], Base64.DEFAULT)
+        val decodedString: ByteArray = Base64.decode(tours[position].images!![0].photo, Base64.DEFAULT)
         val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
         holder.itemImage.setImageBitmap(decodedByte)
-        holder.itemPlace.text = places[position]
-        holder.itemName.text = names[position]
-        holder.itemRating.rating = ratings[position]
-        holder.itemPrice.text = "${prices[position]}"
-        holder.itemReviews.text = "${reviews[position]}"
+        holder.itemPlace.text = tours[position].completePlace
+        holder.itemName.text = tours[position].name
+        holder.itemRating.rating = tours[position].rating
+        holder.itemPrice.text = "${tours[position].price}"
+        holder.itemReviews.text = "${tours[position].reviews}"
+        holder.itemDuration.text = tours[position].duration.subSequence(0, 5);
     }
 
 }
