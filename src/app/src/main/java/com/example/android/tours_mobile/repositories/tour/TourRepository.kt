@@ -21,7 +21,7 @@ class TourRepository {
         webServiceTour.getFilterTours(place, departure, arrival, id_user).enqueue(object : Callback<List<TourDTO>> {
                 override fun onFailure(call: Call<List<TourDTO>>, t: Throwable) {
                     filterTours.value = arrayListOf()
-                    stateSearch.value = 3
+                    stateSearch.value = 4
                 }
                 override fun onResponse(
                     call: Call<List<TourDTO>>,

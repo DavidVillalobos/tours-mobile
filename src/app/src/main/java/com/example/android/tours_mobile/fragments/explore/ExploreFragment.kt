@@ -97,12 +97,16 @@ class ExploreFragment : Fragment() {
             binding.recyclerView.adapter = adapter
         })
         explorerViewModel.stateSearch.observe(viewLifecycleOwner, {
-            binding.progressBar.visibility = when (it) {
-                // 0 -> not search yet
-                1 -> View.VISIBLE // in search
-                // 2 -> found success
+            if(it == 1){// 1 -> in search
+                binding.progressBar.visibility = View.VISIBLE
+                binding.buttonSearch.isEnabled = false
+            }else{
+                // 0 -> not search any yet
+                // 2 -> found successful
                 // 3 -> not found tours
-                else -> View.GONE
+                // 4 -> fail, maybe not connection
+                binding.progressBar.visibility = View.GONE
+                binding.buttonSearch.isEnabled = true
             }
         })
         return binding.root
