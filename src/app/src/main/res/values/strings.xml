@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GetYourTour</string>
+    <string name="app_name">Get Your Tour</string>
     <string name="title_explore">Explorer</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_reservations">Reservations</string>
