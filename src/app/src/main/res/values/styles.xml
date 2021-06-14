@@ -13,4 +13,9 @@
     <style name="DatePickerTheme.ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/dark_blue</item>
     </style>
+    <style name="CustomSplashTheme" parent="Theme.Tours_mobile">
+
+        <!-- below one -->
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>
