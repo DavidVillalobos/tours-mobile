@@ -1,11 +1,9 @@
-package com.example.android.tours_mobile
+package com.example.android.tours_mobile.helpers
 
-import com.example.android.tours_mobile.Constants.BASE_URL
-import com.example.android.tours_mobile.services.CityService
+import com.example.android.tours_mobile.helpers.Constants.BASE_URL
 import com.example.android.tours_mobile.services.CountryService
 import com.example.android.tours_mobile.services.TourService
 import com.example.android.tours_mobile.services.UserService
-
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -14,7 +12,6 @@ object ServiceAdapter{
     private var user_service : UserService
     private var country_service : CountryService
     private var tour_service : TourService
-    private var city_service : CityService
 
     init {
          val retrofit : Retrofit  = Retrofit.Builder()
@@ -24,7 +21,6 @@ object ServiceAdapter{
         user_service = retrofit.create(UserService::class.java)
         country_service = retrofit.create(CountryService::class.java)
         tour_service = retrofit.create(TourService::class.java)
-        city_service = retrofit.create(CityService::class.java)
     }
 
     fun getUserService(): UserService {
@@ -37,9 +33,5 @@ object ServiceAdapter{
 
     fun getTourService(): TourService {
         return tour_service;
-    }
-
-    fun getCityService(): CityService {
-        return city_service;
     }
 }

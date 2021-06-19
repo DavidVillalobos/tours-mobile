@@ -1,7 +1,7 @@
 package com.example.android.tours_mobile.repositories.user
 
 import androidx.lifecycle.MutableLiveData
-import com.example.android.tours_mobile.ServiceAdapter
+import com.example.android.tours_mobile.helpers.ServiceAdapter
 import com.example.android.tours_mobile.services.dto.UserDTO
 import retrofit2.Call
 import retrofit2.Callback

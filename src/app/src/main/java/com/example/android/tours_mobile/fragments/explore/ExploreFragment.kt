@@ -17,6 +17,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.tours_mobile.databinding.FragmentExploreBinding
+import com.example.android.tours_mobile.helpers.RecyclerAdapter
 import com.example.android.tours_mobile.services.dto.UserDTO
 import com.example.android.tours_mobile.viewmodels.explore.ExploreViewModel
 import com.google.gson.Gson
@@ -81,7 +82,7 @@ class ExploreFragment : Fragment() {
                         binding.editTextArrival.setText("${year}-${fm}-${fd}")
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
             if(binding.editTextDeparture.text.toString() != "") {
-                val df : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+                val df = SimpleDateFormat("yyyy-MM-dd")
                 val date : Date? = df.parse(binding.editTextDeparture.text.toString())
                 datePickerDialog!!.datePicker.minDate = date!!.time
             }
