@@ -1,4 +1,4 @@
-package com.example.android.tours_mobile.fragments.explore
+package com.example.android.tours_mobile.helpers
 
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -31,7 +31,7 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         this.tours = tours
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardview_row, parent, false)
         return ViewHolder(v)
@@ -41,7 +41,7 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         return tours.size;
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val decodedString: ByteArray = Base64.decode(tours[position].images!![0].photo, Base64.DEFAULT)
         val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
         holder.itemImage.setImageBitmap(decodedByte)
