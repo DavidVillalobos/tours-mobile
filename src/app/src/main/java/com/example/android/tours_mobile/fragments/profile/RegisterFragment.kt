@@ -2,7 +2,6 @@ package com.example.android.tours_mobile.fragments.profile
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
@@ -25,7 +23,6 @@ import androidx.navigation.Navigation
 import com.example.android.tours_mobile.R
 import com.example.android.tours_mobile.databinding.FragmentRegisterBinding
 import com.example.android.tours_mobile.services.dto.CountryDTO
-import com.example.android.tours_mobile.services.dto.UserDTO
 import com.example.android.tours_mobile.viewmodels.profile.RegisterViewModel
 import java.util.*
 
@@ -42,36 +39,91 @@ class RegisterFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
-    override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         val arrayAdapter : ArrayAdapter<CountryDTO> = ArrayAdapter<CountryDTO>(requireContext(), android.R.layout.simple_spinner_item, mutableListOf())
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerCountry.prompt = getString(com.example.android.tours_mobile.R.string.label_country)
+        binding.spinnerCountry.prompt = getString(R.string.label_country)
         registerViewModel.getCountries()
         registerViewModel.countries.observe(viewLifecycleOwner, {
             arrayAdapter.clear()
-            arrayAdapter.add(CountryDTO(-1, getString(com.example.android.tours_mobile.R.string.country_origin), emptyList()));
+            arrayAdapter.add(CountryDTO(-1, getString(R.string.country_origin), emptyList()))
             arrayAdapter.addAll(it)
             binding.spinnerCountry.adapter = arrayAdapter
         })
 
-        binding.buttonSignUp.isEnabled = false
+        registerViewModel.isValid.observe(viewLifecycleOwner, {
+            binding.buttonSignUp.isEnabled = it
+        })
         binding.spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                validateFields()
+                val selectItem = binding.spinnerCountry.selectedItem as CountryDTO
+                registerViewModel.country.value = selectItem
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // TODO Auto-generated method stub
             }
         }
-        binding.editTextIdentification.addTextChangedListener { validateFields() }
-        binding.editTextName.addTextChangedListener { validateFields() }
-        binding.editTextLastName.addTextChangedListener { validateFields() }
-        binding.editTextBirthday.addTextChangedListener { validateFields() }
-        binding.editTextEmailRegister.addTextChangedListener { validateFields() }
-        binding.editTextPasswordRegister.addTextChangedListener { validateFields() }
+        registerViewModel.countryErrorMessage.observe(viewLifecycleOwner, {
+            if(it  != null) {
+                val errorText: android.widget.TextView =
+                    binding.spinnerCountry.selectedView as android.widget.TextView
+                errorText.setTextColor(android.graphics.Color.RED)
+                errorText.text = it
+            }
+        })
+
+        binding.editTextIdentification.addTextChangedListener {
+            registerViewModel.id.value = it.toString()
+        }
+        registerViewModel.idErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextIdentification.error = it
+        })
+
+        binding.editTextName.addTextChangedListener {
+            registerViewModel.name.value = it.toString()
+        }
+        registerViewModel.nameErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextName.error = it
+        })
+
+        binding.editTextLastName.addTextChangedListener {
+            registerViewModel.lastname.value = it.toString()
+        }
+        registerViewModel.lastnameErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextLastName.error = it
+        })
+
+        binding.editTextEmailRegister.addTextChangedListener {
+            registerViewModel.email.value = it.toString()
+        }
+        registerViewModel.emailErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextEmailRegister.error = it
+        })
+
+        binding.editTextPasswordRegister.addTextChangedListener {
+            registerViewModel.password.value = it.toString()
+        }
+        registerViewModel.passwordErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextPasswordRegister.error = it
+        })
+
+        binding.editTextBirthday.addTextChangedListener {
+            registerViewModel.birthday.value = it.toString()
+        }
+        registerViewModel.birthdayErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextBirthday.error = it
+        })
+
+        binding.editTextIdentification.setText("")
+        binding.editTextName.setText("")
+        binding.editTextLastName.setText("")
+        binding.editTextEmailRegister.setText("")
+        binding.editTextPasswordRegister.setText("")
+        binding.editTextBirthday.setText("")
+
 
         binding.buttonHidePasswordRegister.isChecked = false
         binding.buttonHidePasswordRegister.setOnClickListener{
@@ -98,88 +150,22 @@ class RegisterFragment : Fragment() {
             datePickerDialog!!.show()
         }
         binding.buttonSignUp.setOnClickListener{
-            val countrySelected = binding.spinnerCountry.selectedItem as CountryDTO;
-            val user = UserDTO(
-                0, countrySelected, binding.editTextEmailRegister.text.toString(),
-                binding.editTextPasswordRegister.text.toString(), binding.editTextName.text.toString(),
-                binding.editTextLastName.text.toString(), binding.editTextIdentification.text.toString(),
-                binding.editTextBirthday.text.toString(), 0);
-            registerViewModel.addUser(user)
-            registerViewModel.stateAddUser.observe(viewLifecycleOwner, {
-                if(registerViewModel.stateAddUser.value == -1) {
-                    Log.d("TAG_", "An error happened!")
-                    val toast = Toast.makeText(requireContext(), getString(R.string.user_register_failed), Toast.LENGTH_LONG)
-                    toast.show()
-                }
-                else if(registerViewModel.stateAddUser.value != 0){
-                    val toast = Toast.makeText(requireContext(), getString(R.string.user_register_success), Toast.LENGTH_LONG)
-                    toast.show()
-                    Navigation.findNavController(requireView()).navigate(R.id.action_navigation_register_to_profile)
-                }
-            })
+            registerViewModel.addUser()
         }
-        return binding.root
-    }
 
-    private fun validateFields() {
-        var isValid : Boolean = true;
-        val selectItem = binding.spinnerCountry.selectedItem as CountryDTO;
-        if(selectItem.id == -1){
-            val errorText: TextView = binding.spinnerCountry.selectedView as TextView
-            errorText.setTextColor(Color.RED)
-            errorText.text = getString(R.string.country_origin)
-            isValid = false
-        }
-        if (binding.editTextIdentification.text.isEmpty()) {
-            binding.editTextIdentification.error = getString(R.string.required_identification)
-            isValid = false
-        }
-        if (binding.editTextName.text.isEmpty()) {
-            binding.editTextName.error = getString(R.string.required_name)
-            isValid = false
-        }
-        if (binding.editTextLastName.text.isEmpty()) {
-            binding.editTextLastName.error = getString(R.string.required_last_name)
-            isValid = false
-        }
-        if (binding.editTextBirthday.text.isEmpty()) {
-            binding.editTextBirthday.error = getString(R.string.required_birthday)
-            isValid = false
-        }else{
-            binding.editTextBirthday.error = null
-        }
-        if (binding.editTextEmailRegister.text.isEmpty()) {
-            binding.editTextEmailRegister.error = getString(R.string.required_email)
-            isValid = false
-        }else{
-            val email = binding.editTextEmailRegister.text.toString().trim()
-            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                binding.editTextEmailRegister.error = getString(R.string.required_format_email)
-                isValid = false
+        registerViewModel.stateAddUser.observe(viewLifecycleOwner, {
+            if(registerViewModel.stateAddUser.value == -1) {
+                Log.d("TAG_", "An error happened!")
+                val toast = Toast.makeText(requireContext(), getString(R.string.user_register_failed), Toast.LENGTH_LONG)
+                toast.show()
             }
-        }
-        if (binding.editTextPasswordRegister.text.isEmpty()) {
-            binding.editTextPasswordRegister.error = getString(R.string.required_password)
-            isValid = false
-        }else {
-            val password = binding.editTextPasswordRegister.text.toString().trim()
-            if (password.length < 8) {
-                binding.editTextPasswordRegister.error = getString(R.string.required_password_extension)
-                isValid = false
-            } else if(!password.matches(Regex(".*\\d.*"))) {
-                binding.editTextPasswordRegister.error = getString(R.string.required_password_numbers)
-                isValid = false
-            } else if (!password.matches(Regex(".*[a-z].*"))) {
-                binding.editTextPasswordRegister.error = getString(R.string.required_password_lower)
-                isValid = false
-            } else if (!password.matches(Regex(".*[A-Z].*"))) {
-                binding.editTextPasswordRegister.error = getString(R.string.required_password_upper)
-                isValid = false
-            } else if (!password.matches(Regex(".*\\W.*"))) {
-                binding.editTextPasswordRegister.error = getString(R.string.required_password_especial_character)
-                isValid = false
+            else if(registerViewModel.stateAddUser.value != 0){
+                val toast = Toast.makeText(requireContext(), getString(R.string.user_register_success), Toast.LENGTH_LONG)
+                toast.show()
+                Navigation.findNavController(requireView()).navigate(R.id.action_navigation_register_to_profile)
             }
-        }
-        binding.buttonSignUp.isEnabled = isValid
+        })
+
+        return binding.root
     }
 }

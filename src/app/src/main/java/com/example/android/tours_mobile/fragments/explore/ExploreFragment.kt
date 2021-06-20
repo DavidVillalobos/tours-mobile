@@ -20,6 +20,7 @@ import com.example.android.tours_mobile.databinding.FragmentExploreBinding
 import com.example.android.tours_mobile.helpers.RecyclerAdapter
 import com.example.android.tours_mobile.services.dto.UserDTO
 import com.example.android.tours_mobile.viewmodels.explore.ExploreViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,7 +46,7 @@ class ExploreFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
         binding.progressBar.bringToFront() // show always in front
         binding.editTextDeparture.setOnClickListener {
@@ -98,16 +99,18 @@ class ExploreFragment : Fragment() {
             binding.recyclerView.adapter = adapter
         })
         explorerViewModel.stateSearch.observe(viewLifecycleOwner, {
-            if(it == 1){// 1 -> in search
-                binding.progressBar.visibility = View.VISIBLE
-                binding.buttonSearch.isEnabled = false
-            }else{
-                // 0 -> not search any yet
-                // 2 -> found successful
-                // 3 -> not found tours
-                // 4 -> fail, maybe not connection
-                binding.progressBar.visibility = View.GONE
-                binding.buttonSearch.isEnabled = true
+            when(it){
+                1 -> { // loading
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.buttonSearch.isEnabled = false
+                }
+                3, 4 -> { // not found, error
+                    Snackbar.make(binding.root, "Not found any tour", Snackbar.LENGTH_LONG).show()
+                }
+                else -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.buttonSearch.isEnabled = true
+                }
             }
         })
         return binding.root

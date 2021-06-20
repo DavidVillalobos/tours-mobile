@@ -38,8 +38,11 @@ class ProfileFragment : Fragment(){
     }
 
     @SuppressLint("SetTextI18n")
-    @Nullable
-    override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         if(sharedPreferences?.contains("user")!!) {
