@@ -10,14 +10,18 @@ class ExploreViewModel : ViewModel(){
     var tours = MutableLiveData<List<TourDTO>>()
     var stateSearch = MutableLiveData<Int>()
     private var toursRepository = TourRepository()
+    var departure = MutableLiveData<String>()
+    var arrival = MutableLiveData<String>()
+    var place = MutableLiveData<String>()
+    var id_user = MutableLiveData<Int>()
 
     init {
         tours = toursRepository.filterTours
         stateSearch  = toursRepository.stateSearch
     }
 
-    fun searchTours(place : String?, departure : String?, arrival : String?, id_user : Int?){
-        toursRepository.filterTours(place, departure, arrival, id_user)
+    fun searchTours(){
+        toursRepository.filterTours(place.value, departure.value, arrival.value, id_user.value)
     }
 
 }

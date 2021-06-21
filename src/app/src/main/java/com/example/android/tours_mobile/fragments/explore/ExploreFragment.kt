@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -89,7 +90,8 @@ class ExploreFragment : Fragment() {
             }
             datePickerDialog!!.show()
         }
-        binding.buttonSearch.setOnClickListener{ searchTours() }
+        binding.buttonSearch.setOnClickListener{ explorerViewModel.searchTours() }
+
         adapter = RecyclerAdapter(mutableListOf())
         layoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = layoutManager
@@ -98,14 +100,42 @@ class ExploreFragment : Fragment() {
             adapter = RecyclerAdapter(it)
             binding.recyclerView.adapter = adapter
         })
+
+        explorerViewModel.id_user.value = if(sharedPreferences?.contains("user")!!) {
+            val json: String? = sharedPreferences?.getString("user", "")
+            val user: UserDTO = Gson().fromJson(json, UserDTO::class.java)
+            user.id
+        }else{
+            null
+        }
+
+        binding.editTextArrival.addTextChangedListener{
+            explorerViewModel.arrival.value = if(it!!.isEmpty()) null
+            else it.toString().trim()
+        }
+        binding.editTextDeparture.addTextChangedListener{
+            explorerViewModel.departure.value = if(it!!.isEmpty()) null
+            else it.toString().trim()
+        }
+        binding.editTextPlace.addTextChangedListener{
+            explorerViewModel.place.value = it.toString()
+        }
+
         explorerViewModel.stateSearch.observe(viewLifecycleOwner, {
             when(it){
                 1 -> { // loading
                     binding.progressBar.visibility = View.VISIBLE
                     binding.buttonSearch.isEnabled = false
                 }
+                2 -> {
+                    Snackbar.make(binding.root, "${explorerViewModel.tours.value!!.size} tours match", Snackbar.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.buttonSearch.isEnabled = true
+                }
                 3, 4 -> { // not found, error
                     Snackbar.make(binding.root, "Not found any tour", Snackbar.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.buttonSearch.isEnabled = true
                 }
                 else -> {
                     binding.progressBar.visibility = View.GONE
@@ -114,22 +144,5 @@ class ExploreFragment : Fragment() {
             }
         })
         return binding.root
-    }
-
-    private fun searchTours() {
-        val place : String? = if(binding.editTextPlace.text.isEmpty()) null
-        else binding.editTextPlace.text.toString().trim()
-        val departure : String? = if(binding.editTextDeparture.text.isEmpty()) null
-        else binding.editTextDeparture.text.toString().trim()
-        val arrival : String? = if(binding.editTextArrival.text.isEmpty()) null
-        else binding.editTextArrival.text.toString().trim()
-        val idUser : Int? = if(sharedPreferences?.contains("user")!!) {
-            val json: String? = sharedPreferences?.getString("user", "")
-            val user: UserDTO = Gson().fromJson(json, UserDTO::class.java)
-            user.id
-        }else{
-            null
-        }
-        explorerViewModel.searchTours(place, departure, arrival, idUser)
     }
 }
