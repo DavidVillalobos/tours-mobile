@@ -41,11 +41,12 @@
     <string name="required_email">Email required</string>
     <string name="required_format_email">Invalid email format</string>
     <string name="required_password">Password required</string>
-    <string name="required_password_extension">Minimum length required (8 characters)</string>
-    <string name="required_password_numbers">At least one digit required</string>
-    <string name="required_password_lower">At least one lowercase required</string>
-    <string name="required_password_upper">At least one capital letter required</string>
-    <string name="required_password_especial_character">At least one special character required</string>
+    <string name="required_not_spaces_password">The password cannot contain space characters</string>
+    <string name="required_password_extension">The password cannot have less than 8 characters</string>
+    <string name="required_password_numbers">The password must contain at least one digit</string>
+    <string name="required_password_lower">The password must contain at least one lowercase letter</string>
+    <string name="required_password_upper">The password must contain at least one uppercase letter</string>
+    <string name="required_password_especial_character">The password must contain at least one special character</string>
     <string name="user_register_success">User registration successful</string>
     <string name="user_register_failed">User registration failed</string>
     <string name="user_login_failed">User does not exist</string>

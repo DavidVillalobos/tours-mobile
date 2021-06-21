@@ -41,6 +41,7 @@
     <string name="required_email">Correo requerido</string>
     <string name="required_format_email">Formato de Correo no valido</string>
     <string name="required_password">Contraseña requerida</string>
+    <string name="required_not_spaces_password">La contraseña no puede contener espacios</string>
     <string name="required_password_extension">Extension mínima requerida (8 caracteres)</string>
     <string name="required_password_numbers">Al menos un digito es requerido</string>
     <string name="required_password_lower">Al menos una minúscula es requerida</string>
