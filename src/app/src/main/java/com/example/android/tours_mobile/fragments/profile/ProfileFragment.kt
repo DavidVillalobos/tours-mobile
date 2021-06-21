@@ -12,7 +12,6 @@ import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -22,6 +21,7 @@ import com.example.android.tours_mobile.R
 import com.example.android.tours_mobile.databinding.FragmentProfileBinding
 import com.example.android.tours_mobile.services.dto.UserDTO
 import com.example.android.tours_mobile.viewmodels.profile.ProfileViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 
 
@@ -35,6 +35,7 @@ class ProfileFragment : Fragment(){
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = activity?.getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
+        profileViewModel.context = requireContext()
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,82 +61,58 @@ class ProfileFragment : Fragment(){
             binding.screenLogin.visibility = VISIBLE;
             binding.screenProfile.visibility = INVISIBLE;
         }
-        binding.buttonLogOut.setOnClickListener{logout()}
+        binding.buttonLogOut.setOnClickListener{ logout() }
+        binding.buttonLogIn.setOnClickListener { login() }
+
         binding.buttonHidePasswordLogin.isChecked = false
         binding.buttonHidePasswordLogin.setOnClickListener {
             binding.editTextPassword.transformationMethod =
                 if (binding.buttonHidePasswordLogin.isChecked) HideReturnsTransformationMethod.getInstance()
                 else PasswordTransformationMethod.getInstance()
         }
+
         binding.buttonSignUp.setOnClickListener {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_navigation_profile_to_register)
         }
-        binding.buttonLogIn.isEnabled = false
-        binding.editTextEmail.addTextChangedListener { validateFields(); }
-        binding.editTextPassword.addTextChangedListener { validateFields(); };
-        binding.buttonLogIn.setOnClickListener { login() }
-        validateFields()
+
+        profileViewModel.isValid.observe(viewLifecycleOwner, {
+            binding.buttonLogIn.isEnabled = it
+        })
+
+        binding.editTextEmail.addTextChangedListener{
+            profileViewModel.email.value = it.toString()
+        }
+        profileViewModel.emailErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextEmail.error = it
+        })
+
+        binding.editTextPassword.addTextChangedListener {
+            profileViewModel.password.value = it.toString()
+        }
+        profileViewModel.passwordErrorMessage.observe(viewLifecycleOwner, {
+            binding.editTextPassword.error = it
+        })
+
+        binding.editTextEmail.setText("")
+        binding.editTextPassword.setText("")
+
         return binding.root
     }
 
-    private fun validateFields() {
-        var isValid : Boolean = true
-        if (binding.editTextEmail.text.isEmpty()) {
-            binding.editTextEmail.error = getString(R.string.required_email)
-            isValid = false
-        }else{
-            val email = binding.editTextEmail.text.toString().trim()
-            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                binding.editTextEmail.error = getString(R.string.required_format_email)
-                isValid = false
-            }
-        }
-        if (binding.editTextPassword.text.isEmpty()) {
-            binding.editTextPassword.error = getString(R.string.required_password)
-            isValid = false
-        }else {
-            val password = binding.editTextPassword.text.toString().trim()
-            if (password.length < 8) {
-                binding.editTextPassword.error = getString(R.string.required_password_extension)
-                isValid = false
-            } else if(!password.matches(Regex(".*\\d.*"))) {
-                binding.editTextPassword.error = getString(R.string.required_password_numbers)
-                isValid = false
-            } else if (!password.matches(Regex(".*[a-z].*"))) {
-                binding.editTextPassword.error = getString(R.string.required_password_lower)
-                isValid = false
-            } else if (!password.matches(Regex(".*[A-Z].*"))) {
-                binding.editTextPassword.error = getString(R.string.required_password_upper)
-                isValid = false
-            } else if (!password.matches(Regex(".*\\W.*"))) {
-                binding.editTextPassword.error = getString(R.string.required_password_especial_character)
-                isValid = false
-            }
-        }
-        binding.buttonLogIn.isEnabled = isValid
-    }
-
     private fun login(){
-        val user = UserDTO(
-            binding.editTextEmail.text.toString().trim(),
-            binding.editTextPassword.text.toString().trim()
-        );
-        profileViewModel.authenticateUser(user)
+        profileViewModel.authenticateUser()
         profileViewModel.currentUser.observe(viewLifecycleOwner, {
             if(it != null && it.id != -1){
                 Log.d("TAG_", "Login Successful!")
-                val toast = Toast.makeText(requireContext(), getString(R.string.user_login_success), Toast.LENGTH_LONG)
-                toast.show()
+                Snackbar.make(binding.root, R.string.user_login_success, Snackbar.LENGTH_LONG).show()
                 Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_explore)
-                // Save current user in SharePreferences
                 val editor = sharedPreferences?.edit()
                 editor?.putString("user", Gson().toJson(it))
-                editor?.commit()
+                editor?.apply()
             }else if(it != null){
                 Log.d("TAG_", "An error happened!")
-                val toast = Toast.makeText(requireContext(), getString(R.string.user_login_failed), Toast.LENGTH_LONG)
-                toast.show()
+                Snackbar.make(binding.root, R.string.user_login_failed, Snackbar.LENGTH_LONG).show()
             }
         })
     }
@@ -143,10 +120,9 @@ class ProfileFragment : Fragment(){
     private fun logout(){
         val editor = sharedPreferences?.edit()
         editor?.remove("user")
-        editor?.commit()
-        binding.screenLogin.visibility = VISIBLE;
-        binding.screenProfile.visibility = INVISIBLE;
-        validateFields();
+        editor?.apply()
+        binding.screenLogin.visibility = VISIBLE
+        binding.screenProfile.visibility = INVISIBLE
     }
 
 }
