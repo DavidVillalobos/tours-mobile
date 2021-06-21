@@ -36,6 +36,7 @@ class RegisterFragment : Fragment() {
 
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
+        registerViewModel.context = requireContext()
         super.onCreate(savedInstanceState)
     }
 
@@ -54,9 +55,6 @@ class RegisterFragment : Fragment() {
             binding.spinnerCountry.adapter = arrayAdapter
         })
 
-        registerViewModel.isValid.observe(viewLifecycleOwner, {
-            binding.buttonSignUp.isEnabled = it
-        })
         binding.spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectItem = binding.spinnerCountry.selectedItem as CountryDTO
@@ -73,6 +71,10 @@ class RegisterFragment : Fragment() {
                 errorText.setTextColor(android.graphics.Color.RED)
                 errorText.text = it
             }
+        })
+
+        registerViewModel.isValid.observe(viewLifecycleOwner, {
+            binding.buttonSignUp.isEnabled = it
         })
 
         binding.editTextIdentification.addTextChangedListener {
